@@ -104,6 +104,14 @@ body{
     background-color: red;
 }
 
+.pixelOpenCheckered{
+    background-color: darkgreen;
+}
+
+.pixelBlockedCheckered{
+    background-color: darkslategray;
+}
+
 .stepcount{
     background-color: rgb(205, 255, 218);
     color: rgb(18, 18, 19);

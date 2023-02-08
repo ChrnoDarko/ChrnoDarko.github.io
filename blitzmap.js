@@ -1,20 +1,20 @@
 const container=document.querySelector('.container');
 const pitch = [
-    [0,0,0,0,0,0,0,0,0,0,0],//0
-    [0,0,0,0,0,0,0,0,0,0,0],//1
-    [0,0,0,0,0,0,0,0,0,0,0],//2
-    [0,0,0,0,0,0,0,0,0,0,0],//3
-    [0,0,0,0,0,0,0,0,0,0,0],//4
-    [0,0,0,0,0,0,0,0,0,0,0],//5
-    [0,0,0,0,0,0,0,0,0,0,0],//6
-    [0,0,0,0,0,0,0,0,0,0,0],//7<
-    [0,0,0,0,0,0,0,0,0,0,0],//8
-    [0,0,0,0,0,0,0,0,0,0,0],//9
-    [0,0,0,0,0,0,0,0,0,0,0],//A
-    [0,0,0,0,0,0,0,0,0,0,0],//B
-    [0,0,0,0,0,0,0,0,0,0,0],//C
-    [0,0,0,0,0,0,0,0,0,0,0],//D
-    [0,0,0,0,0,0,0,0,0,0,0] //E
+    [0,0,0,0,0,0,0,0,0,0,0],//00
+    [0,0,0,0,0,0,0,0,0,0,0],//01
+    [0,1,0,1,0,1,0,1,0,1,0],//02
+    [1,0,1,0,1,0,1,0,1,0,1],//03
+    [0,0,0,0,0,0,0,0,0,0,0],//04
+    [0,0,0,0,0,0,0,0,0,0,0],//05
+    [0,0,0,0,0,0,0,0,0,0,0],//06
+    [0,0,0,0,0,0,0,0,0,0,0],//07<
+    [0,0,0,0,0,0,0,0,0,0,0],//08
+    [0,0,0,0,0,0,0,0,0,0,0],//09
+    [0,0,0,0,0,0,0,0,0,0,0],//10
+    [0,0,0,0,0,0,0,0,0,0,0],//11
+    [0,0,0,0,0,0,0,0,0,0,0],//12
+    [0,0,0,0,0,0,0,0,0,0,0],//13
+    [0,0,0,0,0,0,0,0,0,0,0] //14
 ]//  0 1 2 3 4 5 6 7 8 9 A
 //             ^
 
@@ -24,14 +24,43 @@ const trapDoor = 2;
 const trapDoorOpen = 3;
 const blueEndLine = 4;
 const redEndLine = 5;
+const openCheckered = 6;
+const blockedCheckered = 7;
 
-// function searchCheckeredPattern(){
-//     for(){
-//         for(){
-//             if((pitch[][])||(pitch[][]))
-//         }
-//     }
-// }
+function searchCheckeredPattern(){
+
+    console.log('entenring search');
+    const checkered1 = [0,1,1,0];
+    const checkered2 = [1,0,0,1];
+
+    for(i=2; i<=11; i++){
+        for(j=0; j<=9; j++){
+
+            let sample = [pitch[i][j],pitch[i][j+1],
+                        pitch[i+1][j],pitch[i+1][j+1]];
+        
+
+            console.log(`Chequered: ${checkered1}`);
+            console.log(`Sample: ${sample}`);
+            
+            if(sample == checkered1){
+                console.log('checkered1');
+                pitch[i][j] = openCheckered;
+                pitch[i][j+1] = blockedCheckered;
+                pitch[i+1][j] = blockedCheckered;
+                pitch[i+1][j+1] = openCheckered;
+            }
+
+            if(sample == checkered2){
+                console.log('checkered2');
+                pitch[i][j] = blockedCheckered;
+                pitch[i][j+1] = openCheckered;
+                pitch[i+1][j] = openCheckered;
+                pitch[i+1][j+1] = blockedCheckered;
+            }
+        }
+    }
+}
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -45,6 +74,7 @@ function generatePitch(density){
     }
     placeTrapDoors();
     placeEndZones();
+    searchCheckeredPattern();
 }
 
 function placeTrapDoorOpens(row,column){
@@ -133,11 +163,16 @@ function populate(){
                 break;
                 case 5: div.classList.add('pixelRedEndLine');
                 break;
+                case 6: div.classList.add('pixelOpenCheckered');
+                break;
+                case 7: div.classList.add('pixelBlockedCheckered');
+                break;
             }
             container.appendChild(div);
         }
     }
 }
 
-generatePitch(3);
+//generatePitch(5);
+searchCheckeredPattern();
 populate();
