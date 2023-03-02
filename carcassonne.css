@@ -1,0 +1,112 @@
+*{
+    box-sizing: border-box;
+    background-color: black;
+    border-color: black;
+}
+
+html,body{
+    height: 100%;
+}
+
+button{
+    border-style: solid;
+    border-radius: 1%;
+    border-color: white;
+    color: white;
+}
+
+input{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+div{
+    border-style: solid;
+    border-radius: 1%;
+}
+
+.table{
+    display: grid;
+    --columns:2;
+    --rows:1;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: repeat(var(--rows), 1fr);
+    height: auto;
+}
+
+.center-game{
+    height: 100%;
+}
+
+.table{
+    height: 100%;
+}
+
+.player-panel{
+    display: grid;
+    --columns:4;
+    --rows:1;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.game-area{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 5fr 1fr 5fr;
+    gap: 3px;
+    padding: 3px;
+    border-radius: 1%;
+}
+
+.box{
+    display: grid;
+    --columns:7;
+    --rows:5;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.tile{
+    border-radius: 5%;
+    border-width: 5%;
+    margin: 5px;
+    border-color: chartreuse;
+}
+
+.red{
+    border-color: red;
+}
+
+.blue{
+    border-color: blue;
+}
+
+.selected{
+    background-color: orange;
+}
+
+.player-selected{
+    color: orange;
+}
+
+.used{
+    background-color: black;
+    border-color: grey;
+}
+
+.mini{
+    --columns:7;
+    --rows:1;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.invisible{
+    background-color: black;
+    border-color: black;
+}
+
