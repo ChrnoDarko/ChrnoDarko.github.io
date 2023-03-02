@@ -9,11 +9,15 @@ html, body{
 }
 
 body{
-    background-color: #D6E6F2;
+    background-color: black;
     display: inline;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+center{
+    color: white;
 }
 
 .navbar
