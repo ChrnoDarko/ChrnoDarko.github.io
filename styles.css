@@ -5,6 +5,7 @@
     color: white;
 }
 
+
 html, body{
     height: 100%;
 }
@@ -35,6 +36,10 @@ body{
 .btn, input{
     height: 35px;
     padding: 0 1em;
+}
+
+center{
+    color: white;
 }
 
 .btnRndm{
@@ -82,31 +87,6 @@ body{
 
 .Blocked{
     background-color: grey;
-}
-
-.open{
-    background-color: forestgreen;
-    border-radius: 2px;
-}
-
-.TrapDoor{
-    background-color: sienna;
-}
-
-.BlueEndLine{
-    background-color: blue;
-}
-
-.RedEndLine{
-    background-color: red;
-}
-
-.OpenCheckered{
-    background-color: darkgreen;
-}
-
-.BlockedCheckered{
-    background-color: darkslategray;
 }
 
 .stepcount{
