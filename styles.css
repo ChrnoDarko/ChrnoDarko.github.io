@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
 }
 
 html, body{
@@ -9,7 +10,7 @@ html, body{
 }
 
 body{
-    background-color: #D6E6F2;
+    background-color: black;
     display: inline;
     justify-content: center;
     align-items: center;
@@ -22,8 +23,6 @@ body{
     width: 860px;
     border-radius: 3px;
 } 
-
-
 
 .navbar{
     padding: 1em;
