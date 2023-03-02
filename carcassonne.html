@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Carcassonne Randomizer</title>
+        <link rel="stylesheet" href="carcassonne.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center class="center-game">
+            <div id="table" class="table">
+                <div id="gameArea" class="game-area">
+                    <div id="blueBox"class="box blue"></div>
+                    <div id="miniBox"class="box mini">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div id="specialTile" class="tile"></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="redBox"class="box red"></div>
+                </div>
+                <div id="playerArea" class="player-area">
+                    <div id="currentPlayersArea"></div>
+                    <div class="newPlayerDiv">
+                        <input id="newPlayerInput" type="text" class="text-input">
+                        <button id="addPlayer" class="add-Player-Btn">Add player</button>
+                    </div>
+                    <button id="startGameBtn">Start Game</button>
+                </div>
+            </div>
+        </center>
+        <script src="carcassonne.js"></script>
+    </body>
+</html>
