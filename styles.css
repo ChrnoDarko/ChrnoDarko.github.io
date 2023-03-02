@@ -83,25 +83,33 @@ body{
     padding: 3px;
 }
 
-.pixelBlocked{
+.Blocked{
     background-color: grey;
 }
 
-.pixel{
+.open{
     background-color: forestgreen;
     border-radius: 2px;
 }
 
-.pixelTrapDoor{
+.TrapDoor{
     background-color: sienna;
 }
 
-.pixelBlueEndLine{
+.BlueEndLine{
     background-color: blue;
 }
 
-.pixelRedEndLine{
+.RedEndLine{
     background-color: red;
+}
+
+.OpenCheckered{
+    background-color: darkgreen;
+}
+
+.BlockedCheckered{
+    background-color: darkslategray;
 }
 
 .stepcount{
