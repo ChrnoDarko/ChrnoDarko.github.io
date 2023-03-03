@@ -6,8 +6,8 @@ const addPlayerButton = document.getElementById('addPlayer');
 const newPlayerInput = document.getElementById('newPlayerInput');
 const currentplayersArea = document.getElementById("currentPlayersArea");
 const startGameBtn = document.getElementById('startGameBtn');
-
 const tileList = ['specialTile'];
+
 let specialTileInBox = false;
 let lastSelectedTile = '';
 let numOfPlayers = 0;
