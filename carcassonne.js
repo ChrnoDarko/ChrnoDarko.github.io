@@ -31,6 +31,8 @@ addPlayerButton.onclick = function(){
     addPlayer();
     newPlayerInput.value = "";
     addPlayerButton.setAttribute('disabled','true');
+    activePlayer = numOfPlayers;
+    if(numOfPlayers >= 2){startGameBtn.removeAttribute('hidden');}
 }
 
 function reducePlayerScore(event){
