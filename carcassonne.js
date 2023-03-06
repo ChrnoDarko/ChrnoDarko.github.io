@@ -89,7 +89,6 @@ function getRandomInt(min, max) {
 }
 
 function changeActivePlayer(){
-
     let player = document.getElementById('player' + activePlayer);
     player.classList.remove('player-selected');
 
@@ -97,7 +96,6 @@ function changeActivePlayer(){
 
     player = document.getElementById('player' + activePlayer);
     player.classList.add('player-selected');
-    //if(activePlayer === numOfPlayers){activePlayer = 1;} else {}
 }
 
 function playTile(){
