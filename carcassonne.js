@@ -36,14 +36,16 @@ addPlayerButton.onclick = function(){
 }
 
 function reducePlayerScore(event){
-    let score = document.getElementById('player' + event.explicitOriginalTarget.className + 'Score');
+    console.log(event);
+    let score = document.getElementById('player' + event.target.className + 'Score');
     let newScore = parseInt(score.innerHTML);
     if(newScore>0){newScore--;}
     score.innerHTML = newScore+'';
 }
 
 function increasePlayerScore(event){
-    let score = document.getElementById('player' + event.explicitOriginalTarget.className + 'Score');
+    console.log(event);
+    let score = document.getElementById('player' + event.target.className + 'Score');
     let newScore = parseInt(score.innerHTML);
     newScore++;
     score.innerHTML = newScore+'';
