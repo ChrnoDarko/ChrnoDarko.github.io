@@ -20,6 +20,12 @@ startGameBtn.onclick = function(){
         startGameBtn.setAttribute('hidden','true');
         newPlayerInput.setAttribute('hidden','true');
         activePlayer = numOfPlayers;
+
+        let scoreButtonList = document.getElementsByClassName('scoreButton');
+
+        for(let i=0; i<scoreButtonList.length; i++){
+            scoreButtonList[i].removeAttribute('disabled');
+        }
     }
 }
 
@@ -37,7 +43,8 @@ addPlayerButton.onclick = function(){
 
 function reducePlayerScore(event){
     console.log(event);
-    let score = document.getElementById('player' + event.target.className + 'Score');
+    console.log(event.target);
+    let score = document.getElementById('player' + event.target.classList[1] + 'Score');
     let newScore = parseInt(score.innerHTML);
     if(newScore>0){newScore--;}
     score.innerHTML = newScore+'';
@@ -45,7 +52,8 @@ function reducePlayerScore(event){
 
 function increasePlayerScore(event){
     console.log(event);
-    let score = document.getElementById('player' + event.target.className + 'Score');
+    console.log(event.target);
+    let score = document.getElementById('player' + event.target.classList[1] + 'Score');
     let newScore = parseInt(score.innerHTML);
     newScore++;
     score.innerHTML = newScore+'';
@@ -60,8 +68,10 @@ function addPlayer(){
         
         const minusOne = document.createElement('button');
         minusOne.textContent = '-1';
+        minusOne.classList.add('scoreButton');
         minusOne.classList.add(numOfPlayers);
         minusOne.addEventListener('click', reducePlayerScore);
+        minusOne.setAttribute('disabled','true');
         newPlayerDiv.appendChild(minusOne);
 
         const playerName = document.createElement('p');
@@ -76,8 +86,10 @@ function addPlayer(){
         
         const plusOne = document.createElement('button');
         plusOne.textContent = '+1';
+        plusOne.classList.add('scoreButton');
         plusOne.classList.add(numOfPlayers);
         plusOne.addEventListener('click', increasePlayerScore);
+        plusOne.setAttribute('disabled','true');
         newPlayerDiv.appendChild(plusOne);
     
         currentplayersArea.appendChild(newPlayerDiv);
