@@ -89,6 +89,10 @@ div{
     background-color: orange;
 }
 
+.last-selected{
+    border-color: orange;
+}
+
 .player-selected{
     color: orange;
 }

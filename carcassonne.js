@@ -9,7 +9,8 @@ const startGameBtn = document.getElementById('startGameBtn');
 const tileList = ['specialTile'];
 
 let specialTileInBox = false;
-let lastSelectedTile = '';
+let currentReminder = '';
+let currentSelected = '';
 let numOfPlayers = 0;
 let activePlayer = 0;
 
@@ -114,29 +115,57 @@ function changeActivePlayer(){
 
 function playTile(){
 
-    let arrayIndex = getRandomInt(0,tileList.length-1);
-    let selectedTile = tileList[arrayIndex];
 
-    if(tileList.length === 0){
-        document.getElementById(lastSelectedTile).classList.remove('selected');
-        document.getElementById(lastSelectedTile).classList.add('used');
+    // reminder gets grey
+    if(currentReminder){
+        document.getElementById(currentReminder).classList.remove('last-selected');
+        document.getElementById(currentReminder).classList.add('used');
     }
 
-    document.getElementById(selectedTile).classList.add('selected');
-    
-    if(lastSelectedTile !== ''){
-        document.getElementById(lastSelectedTile).classList.remove('selected');
+    currentReminder = currentSelected
+
+    // selected becomes reminder
+    if(currentReminder){
+        document.getElementById(currentReminder).classList.remove('selected');
+        document.getElementById(currentReminder).classList.add('last-selected');
+    }
+
+    // getting a new tile
+    let arrayIndex = getRandomInt(0,tileList.length-1);
+    currentSelected = tileList[arrayIndex];
+    document.getElementById(currentSelected).classList.add('selected');
+
+    // if(tileList.length === 0){
+    //     document.getElementById(currentReminder).classList.remove('selected');
+    //     document.getElementById(currentReminder).classList.add('used');
+    // }
+
+    // selected gets highlight
+    //document.getElementById(currentSelected).classList.add('selected');
+
+    //
+
+    if(currentReminder !== ''){
+        //document.getElementById(currentReminder).classList.remove('selected');
         if(!specialTileInBox){
             document.getElementById('specialTile').classList.remove('tile');
+            document.getElementById('specialTile').classList.remove('selected');
             specialTileInBox = true;
-        }else{document.getElementById(lastSelectedTile).classList.add('used');}
+        }else{
+            document.getElementById(currentReminder).classList.add('last-selected');
+            document.getElementById(currentReminder).classList.remove('selected');
+        }
             
         tileList.splice(arrayIndex,1);
     }else{
         tileList.shift();
     }
 
-    lastSelectedTile = selectedTile;
+
+    //currentReminder = currentSelected;
+
+    document.getElementById("p1").textContent = currentSelected;
+    document.getElementById("p2").textContent = currentReminder;
 
     changeActivePlayer();
 }
