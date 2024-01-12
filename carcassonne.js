@@ -115,16 +115,14 @@ function changeActivePlayer(){
 
 function playTile(){
 
-
     // reminder gets grey
     if(currentReminder){
         document.getElementById(currentReminder).classList.remove('last-selected');
         document.getElementById(currentReminder).classList.add('used');
     }
 
-    currentReminder = currentSelected
-
     // selected becomes reminder
+    currentReminder = currentSelected
     if(currentReminder){
         document.getElementById(currentReminder).classList.remove('selected');
         document.getElementById(currentReminder).classList.add('last-selected');
@@ -135,44 +133,29 @@ function playTile(){
     currentSelected = tileList[arrayIndex];
     document.getElementById(currentSelected).classList.add('selected');
 
-    // if(tileList.length === 0){
-    //     document.getElementById(currentReminder).classList.remove('selected');
-    //     document.getElementById(currentReminder).classList.add('used');
-    // }
-
-    // selected gets highlight
-    //document.getElementById(currentSelected).classList.add('selected');
-
-    //
-
+    //special case
     if(currentReminder !== ''){
-        //document.getElementById(currentReminder).classList.remove('selected');
-        if(!specialTileInBox){
+        if(!specialTileInBox){ // 2
             document.getElementById('specialTile').classList.remove('tile');
-            document.getElementById('specialTile').classList.remove('selected');
+            document.getElementById("p1").textContent = "hola 2";
             specialTileInBox = true;
-        }else{
-            document.getElementById(currentReminder).classList.add('last-selected');
-            document.getElementById(currentReminder).classList.remove('selected');
+        }else{ // 3+
+            document.getElementById("p1").textContent = "hola 3";
         }
             
-        tileList.splice(arrayIndex,1);
-    }else{
-        tileList.shift();
+        if(specialTileInBox){tileList.splice(arrayIndex,1);} // removes a random element
+        document.getElementById("p2").textContent = "borre un elemento";
+    }else{ // 1
+        tileList.shift(); // removes first element
+        document.getElementById("p1").textContent = "hola 1";
     }
-
-
-    //currentReminder = currentSelected;
-
-    document.getElementById("p1").textContent = currentSelected;
-    document.getElementById("p2").textContent = currentReminder;
 
     changeActivePlayer();
 }
 
 function createTiles(box, color){
-    for(let row=0; row<5; row++){
-        for(let col=0; col<7; col++){
+    for(let row=1; row<=5; row++){
+        for(let col=1; col<=7; col++){
             const tile = document.createElement('div');
             let tileId = `${color}:row${row}col${col}`;
 
