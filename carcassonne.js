@@ -9,7 +9,8 @@ const startGameBtn = document.getElementById('startGameBtn');
 const tileList = ['specialTile'];
 
 let specialTileInBox = false;
-let lastSelectedTile = '';
+let currentReminder = '';
+let currentSelected = '';
 let numOfPlayers = 0;
 let activePlayer = 0;
 
@@ -20,6 +21,12 @@ startGameBtn.onclick = function(){
         startGameBtn.setAttribute('hidden','true');
         newPlayerInput.setAttribute('hidden','true');
         activePlayer = numOfPlayers;
+
+        let scoreButtonList = document.getElementsByClassName('scoreButton');
+
+        for(let i=0; i<scoreButtonList.length; i++){
+            scoreButtonList[i].removeAttribute('disabled');
+        }
     }
 }
 
@@ -36,14 +43,18 @@ addPlayerButton.onclick = function(){
 }
 
 function reducePlayerScore(event){
-    let score = document.getElementById('player' + event.explicitOriginalTarget.className + 'Score');
+    console.log(event);
+    console.log(event.target);
+    let score = document.getElementById('player' + event.target.classList[1] + 'Score');
     let newScore = parseInt(score.innerHTML);
     if(newScore>0){newScore--;}
     score.innerHTML = newScore+'';
 }
 
 function increasePlayerScore(event){
-    let score = document.getElementById('player' + event.explicitOriginalTarget.className + 'Score');
+    console.log(event);
+    console.log(event.target);
+    let score = document.getElementById('player' + event.target.classList[1] + 'Score');
     let newScore = parseInt(score.innerHTML);
     newScore++;
     score.innerHTML = newScore+'';
@@ -58,8 +69,10 @@ function addPlayer(){
         
         const minusOne = document.createElement('button');
         minusOne.textContent = '-1';
+        minusOne.classList.add('scoreButton');
         minusOne.classList.add(numOfPlayers);
         minusOne.addEventListener('click', reducePlayerScore);
+        minusOne.setAttribute('disabled','true');
         newPlayerDiv.appendChild(minusOne);
 
         const playerName = document.createElement('p');
@@ -74,8 +87,10 @@ function addPlayer(){
         
         const plusOne = document.createElement('button');
         plusOne.textContent = '+1';
+        plusOne.classList.add('scoreButton');
         plusOne.classList.add(numOfPlayers);
         plusOne.addEventListener('click', increasePlayerScore);
+        plusOne.setAttribute('disabled','true');
         newPlayerDiv.appendChild(plusOne);
     
         currentplayersArea.appendChild(newPlayerDiv);
@@ -89,7 +104,6 @@ function getRandomInt(min, max) {
 }
 
 function changeActivePlayer(){
-
     let player = document.getElementById('player' + activePlayer);
     player.classList.remove('player-selected');
 
@@ -97,41 +111,51 @@ function changeActivePlayer(){
 
     player = document.getElementById('player' + activePlayer);
     player.classList.add('player-selected');
-    //if(activePlayer === numOfPlayers){activePlayer = 1;} else {}
 }
 
 function playTile(){
 
+    // reminder gets grey
+    if(currentReminder){
+        document.getElementById(currentReminder).classList.remove('last-selected');
+        document.getElementById(currentReminder).classList.add('used');
+    }
+
+    // selected becomes reminder
+    currentReminder = currentSelected
+    if(currentReminder){
+        document.getElementById(currentReminder).classList.remove('selected');
+        document.getElementById(currentReminder).classList.add('last-selected');
+    }
+
+    // getting a new tile
     let arrayIndex = getRandomInt(0,tileList.length-1);
-    let selectedTile = tileList[arrayIndex];
+    currentSelected = tileList[arrayIndex];
+    document.getElementById(currentSelected).classList.add('selected');
 
-    if(tileList.length === 0){
-        document.getElementById(lastSelectedTile).classList.remove('selected');
-        document.getElementById(lastSelectedTile).classList.add('used');
-    }
-
-    document.getElementById(selectedTile).classList.add('selected');
-    
-    if(lastSelectedTile !== ''){
-        document.getElementById(lastSelectedTile).classList.remove('selected');
-        if(!specialTileInBox){
+    //special case
+    if(currentReminder !== ''){
+        if(!specialTileInBox){ // 2
             document.getElementById('specialTile').classList.remove('tile');
+            document.getElementById("p1").textContent = "hola 2";
             specialTileInBox = true;
-        }else{document.getElementById(lastSelectedTile).classList.add('used');}
+        }else{ // 3+
+            document.getElementById("p1").textContent = "hola 3";
+        }
             
-        tileList.splice(arrayIndex,1);
-    }else{
-        tileList.shift();
+        if(specialTileInBox){tileList.splice(arrayIndex,1);} // removes a random element
+        document.getElementById("p2").textContent = "borre un elemento";
+    }else{ // 1
+        tileList.shift(); // removes first element
+        document.getElementById("p1").textContent = "hola 1";
     }
-
-    lastSelectedTile = selectedTile;
 
     changeActivePlayer();
 }
 
 function createTiles(box, color){
-    for(let row=0; row<5; row++){
-        for(let col=0; col<7; col++){
+    for(let row=1; row<=5; row++){
+        for(let col=1; col<=7; col++){
             const tile = document.createElement('div');
             let tileId = `${color}:row${row}col${col}`;
 
