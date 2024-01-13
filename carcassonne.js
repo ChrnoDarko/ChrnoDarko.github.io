@@ -137,17 +137,17 @@ function playTile(){
     if(currentReminder !== ''){
         if(!specialTileInBox){ // 2
             document.getElementById('specialTile').classList.remove('tile');
-            document.getElementById("p1").textContent = "hola 2";
+            //document.getElementById("p1").textContent = "hola 2";
             specialTileInBox = true;
         }else{ // 3+
-            document.getElementById("p1").textContent = "hola 3";
+            //document.getElementById("p1").textContent = "hola 3";
         }
             
         if(specialTileInBox){tileList.splice(arrayIndex,1);} // removes a random element
-        document.getElementById("p2").textContent = "borre un elemento";
+        //document.getElementById("p2").textContent = "borre un elemento";
     }else{ // 1
         tileList.shift(); // removes first element
-        document.getElementById("p1").textContent = "hola 1";
+        //document.getElementById("p1").textContent = "hola 1";
     }
 
     changeActivePlayer();
