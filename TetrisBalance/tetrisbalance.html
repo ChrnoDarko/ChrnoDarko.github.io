@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tetris Balance</title>
+        <link rel="stylesheet" href="tetrisbalance.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center class="center-game">
+            <div id="table" class="table">
+                <div id="gameArea" class="game-area">
+                    <div id="blueBox"class="box blue"></div>
+                    <div id="miniBox"class="box mini">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div id="specialTile" class="tile"></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="redBox"class="box red"></div>
+                </div>
+                <div id="playerArea" class="player-area">
+                    <div id="currentPlayersArea"></div>
+                    <div class="newPlayerDiv">
+                        <input id="newPlayerInput" type="text" class="text-input">
+                        <button id="addPlayer" class="add-Player-Btn">Add player</button>
+                    </div>
+                    <button id="startGameBtn" hidden="true">Start Game</button>
+                    <p id="p1"></p>
+                    <p id="p2"></p>
+                </div>
+            </div>
+        </center>
+        <center>
+            <footer>
+                <a href="index.html">Home</a>
+            </footer>
+        </center>
+        <script src="tetrisbalance.js"></script>
+    </body>
+</html>
