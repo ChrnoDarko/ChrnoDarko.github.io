@@ -24,8 +24,6 @@ function setup(){
     //remainingSet = tetrominoSet;
     remainingSet = [].concat(tetrominoSet);
     previousPieceImg.src ="";
-    console.log(tetrominoSet);
-    console.log(remainingSet);
 }
 
 function selectTretomino(){
@@ -36,8 +34,6 @@ function selectTretomino(){
     if(currentPiece != null){previousPiece = currentPiece;}
     currentPiece = remainingSet.splice(randomNum,1);
 
-    console.log(tetrominoSet);
-    console.log(remainingSet);
 }
 
 StartGameBtn.onclick = function(){
@@ -45,7 +41,7 @@ StartGameBtn.onclick = function(){
     selectTretomino();
     currentPieceImg.src = "TetrominoImages/"+currentPiece+".png";
     SelectAPieceBtn.hidden = false;
-    scoreP.innerHTML = score;
+    scoreP.innerHTML = "Score: " + score;
 }
 
 SelectAPieceBtn.onclick = function(){
