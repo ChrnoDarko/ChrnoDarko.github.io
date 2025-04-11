@@ -46,7 +46,7 @@ StartGameBtn.onclick = function(){
 
 SelectAPieceBtn.onclick = function(){
     selectTretomino();
-    scoreP.innerHTML = score;
+    scoreP.innerHTML = "Score: " + score;
     currentPieceImg.src = "TetrominoImages/"+currentPiece+".png";
     previousPieceImg.src = "TetrominoImages/"+previousPiece+".png";
 }
