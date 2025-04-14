@@ -1,6 +1,7 @@
 const SelectAPieceBtn = document.getElementById('SelectAPieceBtn');
 const StartGameBtn = document.getElementById('StartGameBtn');
 const scoreP = document.getElementById('Score');
+const highScoreP = document.getElementById('HighScore');
 const currentPieceImg = document.getElementById('CurrentPieceImg');
 const previousPieceImg = document.getElementById('PreviousPieceImg');
 
@@ -17,11 +18,13 @@ let remainingSet;
 
 let currentPiece;
 let previousPiece;
-let score = 0;
+let score = -1;
+let highScore = 0;
 
 function setup(){
-    score = 0;
+    score = -1;
     //remainingSet = tetrominoSet;
+    remainingSet = [];
     remainingSet = [].concat(tetrominoSet);
     previousPieceImg.src ="";
 }
@@ -40,13 +43,25 @@ StartGameBtn.onclick = function(){
     setup();
     selectTretomino();
     currentPieceImg.src = "TetrominoImages/"+currentPiece+".png";
-    SelectAPieceBtn.hidden = false;
     scoreP.innerHTML = "Score: " + score;
 }
 
-SelectAPieceBtn.onclick = function(){
+currentPieceImg.onclick = function(){
+
+    if(remainingSet.length === 0){
+        scoreP.innerHTML = "Max Score";
+        highScoreP.innerHTML = "Congratulations";
+        return;
+    }
+
     selectTretomino();
+
     scoreP.innerHTML = "Score: " + score;
     currentPieceImg.src = "TetrominoImages/"+currentPiece+".png";
     previousPieceImg.src = "TetrominoImages/"+previousPiece+".png";
+
+    if(highScore < score){
+        highScore = score;
+        highScoreP.innerHTML = "High Score: " + highScore;
+    }
 }
