@@ -16,8 +16,22 @@ body{
     flex-direction: column;
 }
 
+p{
+    font-family: 'Poppins', sans-serif;
+}
+
 center{
     color: white;
+}
+
+footer{
+    width: 75%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    }
+
+h3{
+    padding-top: 2em;
 }
 
 .navbar
@@ -26,93 +40,6 @@ center{
     width: 860px;
     border-radius: 3px;
 } 
-
-
-
-.navbar{
-    padding: 1em;
-    margin-bottom: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.btn, input{
-    height: 35px;
-    padding: 0 1em;
-}
-
-.btnRndm{
-    height: 35px;
-    padding: 0 1em;
-}
-
-.btnStp{
-    height: 35px;
-    padding: 0 1em;
-}
-
-.btnStart{
-    height: 35px;
-    padding: 0 1em;
-}
-
-.btnReload{
-    height: 35px;
-    padding: 0 1em;
-    background-color: rgb(237, 230, 15);
-    border-color: #008805;
-}
-
-.btnReload:hover{
-    height: 35px;
-    padding: 0 1em;
-    background-color: rgb(237, 15, 15);
-    border-color: #c6c90d;
-}
-
-.container{
-    background-color: limegreen;
-    width: 608px;
-    border-radius: 3px;
-    height: 828px;
-    display: grid;
-    --columns:11;
-    --rows:15;
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: repeat(var(--rows), 1fr);
-    gap: 3px;
-    padding: 3px;
-}
-
-.Blocked{
-    background-color: grey;
-}
-
-.open{
-    background-color: forestgreen;
-    border-radius: 2px;
-}
-
-.TrapDoor{
-    background-color: sienna;
-}
-
-.BlueEndLine{
-    background-color: blue;
-}
-
-.RedEndLine{
-    background-color: red;
-}
-
-.OpenCheckered{
-    background-color: darkgreen;
-}
-
-.BlockedCheckered{
-    background-color: darkslategray;
-}
 
 .stepcount{
     background-color: rgb(205, 255, 218);
@@ -140,27 +67,6 @@ sizes{
     margin: auto;
 }
 
-input{
-    width: 200px;
-}
-
-header{
-    padding-top: 1em;
-    padding-bottom: 2em;
-    font-size: xx-large;
-}
-
-section{
-    width: 75%;
-    padding-bottom: 15PX;
-}
-
-footer{
-    width: 75%;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    }
-
 h3{
     padding-top: 2em;
 }
@@ -177,3 +83,30 @@ ul{
 li{
     text-align: left;
 }
+
+/* From Uiverse.io by ErzenXz */ 
+button {
+    width: fit-content;
+    min-width: 100px;
+    height: 45px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2.5px solid #E0E1E4;
+    box-shadow: 0px 0px 20px -20px;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.2s ease-in-out 0ms;
+    user-select: none;
+    font-family: 'Poppins', sans-serif;
+    margin: 30px;
+  }
+  
+  button:hover {
+    background-color: #F2F2F2;
+    box-shadow: 0px 0px 20px -18px;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
