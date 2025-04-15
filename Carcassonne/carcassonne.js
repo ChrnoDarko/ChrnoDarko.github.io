@@ -10,13 +10,13 @@ const tileList = [];
 
 let specialTileInBox = false;
 let currentReminder = '';
-let currentSelected = '';
+let selectedTile = '';
 let numOfPlayers = 0;
 let activePlayer = 0;
 
 startGameBtn.onclick = function(){
     if(numOfPlayers >= 2){
-        gameArea.addEventListener('click', playTile);
+        gameArea.addEventListener('click', play);
         addPlayerButton.setAttribute('hidden','true');
         startGameBtn.setAttribute('hidden','true');
         newPlayerInput.setAttribute('hidden','true');
@@ -113,48 +113,28 @@ function changeActivePlayer(){
     player.classList.add('player-selected');
 }
 
-function playTile(){
+function selectTile(){
+    if(tileList.length === 0){return}
+    let randomNum = Math.floor(Math.random() * tileList.length);
+    selectedTile = tileList[randomNum];
+    document.getElementById(selectedTile).classList.add('selected');
+}
 
-    /*2025-04-14:
-    primer click: selecciona la pieza a tomar
-    segundo click: muestra las piezas reorganizadas despues de tomar la seleccionada
-    */
+function reorganizeBoxes(){
+    let removedTile = tileList.pop();
+    
+    document.getElementById(selectedTile).classList.remove('selected');
+    document.getElementById(removedTile).classList.add('used');
+    selectedTile = null;
+}
 
-    // reminder gets grey
-    if(currentReminder){
-        document.getElementById(currentReminder).classList.remove('last-selected');
-        document.getElementById(currentReminder).classList.add('used');
+function play(){
+    
+    if(!selectedTile){
+        selectTile();
+    }else{
+        reorganizeBoxes();
     }
-
-    // selected becomes reminder 2025-04-14: we wont need reminder
-    currentReminder = currentSelected
-    if(currentReminder){
-        document.getElementById(currentReminder).classList.remove('selected');
-        document.getElementById(currentReminder).classList.add('last-selected');
-    }
-
-    // getting a new tile
-    let arrayIndex = getRandomInt(0,tileList.length-1);
-    currentSelected = tileList[arrayIndex];
-    document.getElementById(currentSelected).classList.add('selected');
-
-   
-    //special case
-    if(currentReminder !== ''){
-        if(!specialTileInBox){ // 2
-            document.getElementById('specialTile').classList.add('used');
-            //document.getElementById("p1").textContent = "hola 2";
-            specialTileInBox = true;
-        }else{ // 3+
-            //document.getElementById("p1").textContent = "hola 3";
-        }
-            
-        if(specialTileInBox){tileList.splice(arrayIndex,1);} // removes a random element
-        //document.getElementById("p2").textContent = "borre un elemento";
-    }else{ // 1
-        tileList.pop();
-    }
-   
 
     changeActivePlayer();
 }
