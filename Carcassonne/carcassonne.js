@@ -6,7 +6,7 @@ const addPlayerButton = document.getElementById('addPlayer');
 const newPlayerInput = document.getElementById('newPlayerInput');
 const currentplayersArea = document.getElementById("currentPlayersArea");
 const startGameBtn = document.getElementById('startGameBtn');
-const tileList = ['specialTile'];
+const tileList = [];
 
 let specialTileInBox = false;
 let currentReminder = '';
@@ -115,13 +115,18 @@ function changeActivePlayer(){
 
 function playTile(){
 
+    /*2025-04-14:
+    primer click: selecciona la pieza a tomar
+    segundo click: muestra las piezas reorganizadas despues de tomar la seleccionada
+    */
+
     // reminder gets grey
     if(currentReminder){
         document.getElementById(currentReminder).classList.remove('last-selected');
         document.getElementById(currentReminder).classList.add('used');
     }
 
-    // selected becomes reminder
+    // selected becomes reminder 2025-04-14: we wont need reminder
     currentReminder = currentSelected
     if(currentReminder){
         document.getElementById(currentReminder).classList.remove('selected');
@@ -133,10 +138,11 @@ function playTile(){
     currentSelected = tileList[arrayIndex];
     document.getElementById(currentSelected).classList.add('selected');
 
+   
     //special case
     if(currentReminder !== ''){
         if(!specialTileInBox){ // 2
-            document.getElementById('specialTile').classList.remove('tile');
+            document.getElementById('specialTile').classList.add('used');
             //document.getElementById("p1").textContent = "hola 2";
             specialTileInBox = true;
         }else{ // 3+
@@ -146,9 +152,9 @@ function playTile(){
         if(specialTileInBox){tileList.splice(arrayIndex,1);} // removes a random element
         //document.getElementById("p2").textContent = "borre un elemento";
     }else{ // 1
-        tileList.shift(); // removes first element
-        //document.getElementById("p1").textContent = "hola 1";
+        tileList.pop();
     }
+   
 
     changeActivePlayer();
 }
@@ -166,6 +172,7 @@ function createTiles(box, color){
             tileList.push(tileId); 
         }
     }
+    tileList.push('specialTile');
 }
 
 createTiles(blueBox, 'blue');
